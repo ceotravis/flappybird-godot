@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://4se2kniq8uuy"]
+
+[ext_resource type="Script" path="res://Source/Pillar.cs" id="1_gq4gx"]
+[ext_resource type="Texture2D" uid="uid://cj076jlu2owb5" path="res://Assets/Pelare2.png" id="1_plpxy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_son7c"]
+size = Vector2(67, 472)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqaub"]
+size = Vector2(85, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4g1gd"]
+size = Vector2(51, 633)
+
+[node name="Pillar" type="StaticBody2D"]
+script = ExtResource("1_gq4gx")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.999939, -15)
+scale = Vector2(12.475, 32.65)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_plpxy")
+
+[node name="CollisionDetector" type="Area2D" parent="."]
+
+[node name="CollisionBottom" type="CollisionShape2D" parent="CollisionDetector"]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_son7c")
+metadata/_edit_lock_ = true
+
+[node name="CollisionTop" type="CollisionShape2D" parent="CollisionDetector"]
+position = Vector2(0, -236)
+shape = SubResource("RectangleShape2D_mqaub")
+metadata/_edit_lock_ = true
+
+[node name="CollisionBottom" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 20)
+shape = SubResource("RectangleShape2D_son7c")
+
+[node name="CollisionTop" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -235.5)
+shape = SubResource("RectangleShape2D_mqaub")
+
+[node name="PointCounter" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointCounter"]
+position = Vector2(1, -569)
+shape = SubResource("RectangleShape2D_4g1gd")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="ScreenExited"]
+[connection signal="body_entered" from="CollisionDetector" to="." method="OnPlayerCollided"]

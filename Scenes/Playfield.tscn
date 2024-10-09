@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://blrv8cqk8oqoy"]
+
+[ext_resource type="Script" path="res://Source/Playfield.cs" id="1_h0yd5"]
+[ext_resource type="PackedScene" uid="uid://pi8fu3kmosdt" path="res://Scenes/Player.tscn" id="1_jlnlt"]
+[ext_resource type="PackedScene" uid="uid://b7b1qw5ovayvn" path="res://Scenes/PillarSpawner.tscn" id="2_ws0h2"]
+[ext_resource type="PackedScene" uid="uid://djt4fcg3355wa" path="res://Scenes/Ground.tscn" id="3_rnwxa"]
+
+[sub_resource type="SystemFont" id="SystemFont_8s5r8"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_h0yd5")
+
+[node name="Player" parent="." instance=ExtResource("1_jlnlt")]
+position = Vector2(570, 320)
+
+[node name="PillarSpawner" parent="." instance=ExtResource("2_ws0h2")]
+position = Vector2(749, 338)
+
+[node name="Ground" parent="." instance=ExtResource("3_rnwxa")]
+position = Vector2(622, 619)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+offset_left = 12.0
+offset_top = -1.0
+offset_right = 140.0
+offset_bottom = 54.0
+theme_override_fonts/font = SubResource("SystemFont_8s5r8")
+theme_override_font_sizes/font_size = 40
+text = "Score: 0"
+
+[connection signal="IncreaseScore" from="Player" to="." method="OnIncreaseScore"]

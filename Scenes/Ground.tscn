@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://djt4fcg3355wa"]
+
+[ext_resource type="Script" path="res://Source/Ground.cs" id="1_ddhx4"]
+[ext_resource type="Texture2D" uid="uid://byglonx7eb5rp" path="res://Assets/ground.png" id="2_whstr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnivq"]
+size = Vector2(1.50525, 1.00156)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xd0i1"]
+size = Vector2(2157, 20)
+
+[node name="Ground" type="StaticBody2D"]
+script = ExtResource("1_ddhx4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-0.0601349, -0.715174)
+rotation = -3.14159
+scale = Vector2(33.6327, -1.47749)
+texture = ExtResource("2_whstr")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(-3.05176e-05, -8.73115e-11)
+rotation = -3.14159
+scale = Vector2(1429.66, -94.8513)
+shape = SubResource("RectangleShape2D_nnivq")
+
+[node name="CollisionDetector" type="Area2D" parent="."]
+
+[node name="CollisionDetectorShape" type="CollisionShape2D" parent="CollisionDetector"]
+position = Vector2(-1.5, -47)
+shape = SubResource("RectangleShape2D_xd0i1")
+
+[connection signal="body_entered" from="CollisionDetector" to="." method="OnPlayerCollided"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7b1qw5ovayvn"]
+
+[ext_resource type="Script" path="res://Source/PillarSpawner.cs" id="1_8xqum"]
+[ext_resource type="PackedScene" uid="uid://4se2kniq8uuy" path="res://Scenes/Pillar.tscn" id="2_838ai"]
+
+[node name="PillarSpawner" type="Marker2D"]
+script = ExtResource("1_8xqum")
+PillarScene = ExtResource("2_838ai")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="TimerTimeout"]
